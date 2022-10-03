@@ -30,12 +30,12 @@ def leer_valores(puzzle_size=3, cursor="*"):
 
 
 if __name__ == '__main__':
-    #print ("****************** Nestor Puzzle ******************")
-    #print("caracter por defecto casilla = * (Asterisco)")
-    #print ("Puzzle inicial: ")
-    #inicial = leer_valores()
-    #print("******************* Puzzle objetivo : **************")
-    #objetivo = leer_valores()
+    print ("****************** Nestor Puzzle ******************")
+    print("caracter por defecto casilla = * (Asterisco)")
+    print ("Puzzle inicial: ")
+    inicial = leer_valores()
+    print("******************* Puzzle objetivo : **************")
+    objetivo = leer_valores()
 
     #solucionable
     #inicial = [ [2, 8, 3] , [1, 6, 4] , [7, '*', 5]]
@@ -43,17 +43,17 @@ if __name__ == '__main__':
 
     # no solucionable
 
-    objetivo = [
-        [1,2,3],
-        [4,5,6],
-        [7,8, "*"]
-    ]
+    #objetivo = [
+    #    [1,2,3],
+    #    [4,5,6],
+    #   [7,8, "*"]
+    #]
 
-    inicial = [
-        [1,2,3],
-        [4, 5,7],
-        [6,8, "*"]
-    ]   
+    #inicial = [
+    #    [1,2,3],
+    #    [4,5,7],
+    #    [6,8, "*"]
+    #]   
 
 
 
