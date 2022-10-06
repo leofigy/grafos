@@ -33,3 +33,22 @@ func (n *Node[T]) FindValue(value T) (int, int, error) {
 	}
 	return -1, -1, &PuzzleProcessError{"unable to find directions for the value in the puzzle"}
 }
+
+func (n *Node[T]) ComputeDiffValuesWith(targetValues [][]T) (int, error) {
+	diff := 0
+
+	if len(n.Values) != len(targetValues) {
+		return diff, &PuzzleProcessError{"values from source and target have not the same rows"}
+	}
+
+	for i := 0; i < len(n.Values); i++ {
+		for j := 0; j < len(n.Values[i]); j++ {
+			if n.Values[i][j] != targetValues[i][j] {
+				diff++
+			}
+		}
+	}
+
+	return diff, nil
+
+}
