@@ -1,5 +1,7 @@
 package models
 
+import "log"
+
 type Direction uint8
 
 const (
@@ -21,6 +23,10 @@ type Node[T string | uint | int] struct {
 type Point struct {
 	X int
 	Y int
+}
+
+func (p *Point) InLimits(limit int) bool {
+	return p.X >= 0 && p.X < limit && p.Y >= 0 && p.Y < limit
 }
 
 func (n *Node[T]) FindValue(value T) (int, int, error) {
@@ -51,4 +57,18 @@ func (n *Node[T]) ComputeDiffValuesWith(targetValues [][]T) (int, error) {
 
 	return diff, nil
 
+}
+
+func (n *Node[T]) CopyAndShuffle(A, B Point) (out [][]T) {
+
+	if !B.InLimits(len(n.Values)) {
+		log.Println("not in limits omitting copy")
+		return
+	}
+
+	out = make([][]T, len(n.Values))
+	copy(out, n.Values)
+
+	out[A.X][A.Y], out[B.X][B.Y] = out[B.X][B.Y], out[A.X][A.Y]
+	return
 }

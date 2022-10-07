@@ -39,3 +39,21 @@ func TestCreateNode(t *testing.T) {
 	fmt.Println(i, j)
 	fmt.Println("all good")
 }
+
+func TestShuffle(t *testing.T) {
+	node := Node[uint]{
+		Values: [][]uint{
+			{1, 2, 3},
+			{4, 5, 6},
+			{7, 0, 8},
+		},
+		Level:  0,
+		Cost:   0,
+		Move:   Left,
+		Cursor: uint(Origin),
+	}
+
+	target := node.CopyAndShuffle(Point{0, 0}, Point{0, 2})
+	fmt.Println(target)
+
+}
