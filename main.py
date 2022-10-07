@@ -33,13 +33,13 @@ if __name__ == '__main__':
     print ("****************** Nestor Puzzle ******************")
     print("caracter por defecto casilla = * (Asterisco)")
     print ("Puzzle inicial: ")
-    inicial = leer_valores()
+    #inicial = leer_valores()
     print("******************* Puzzle objetivo : **************")
-    objetivo = leer_valores()
+    #objetivo = leer_valores()
 
     #solucionable
-    #inicial = [ [2, 8, 3] , [1, 6, 4] , [7, '*', 5]]
-    #objetivo = [ [1, 2, 3] , [8 , "*", 4], [7, 6, 5]]
+    inicial = [ [2, 1, 6] , [4, "*", 8] , [7, 5, 3]]
+    objetivo = [ [1, 2, 3] , [8 , "*", 4], [7, 6, 5]]
 
     # no solucionable
 
