@@ -72,3 +72,48 @@ func (n *Node[T]) CopyAndShuffle(A, B Point) (out [][]T) {
 	out[A.X][A.Y], out[B.X][B.Y] = out[B.X][B.Y], out[A.X][A.Y]
 	return
 }
+
+func (n *Node[T]) ExpandChildren() []Node[T] {
+	children := make([]Node[T], 0, 4)
+
+	x, y, err := n.FindValue(n.Cursor)
+	if err != nil {
+		log.Println("warning: unable to find cursor")
+		return children
+	}
+
+	moves := map[Direction]Point{
+		Up: {
+			x + 1,
+			y,
+		},
+		Down: {
+			x - 1,
+			y,
+		},
+		Right: {
+			x,
+			y + 1,
+		},
+		Left: {
+			x,
+			y - 1,
+		},
+	}
+
+	for mov := range moves {
+		shuffle := n.CopyAndShuffle(Point{x, y}, moves[mov])
+		if len(shuffle) > 0 {
+			children = append(children,
+				Node[T]{
+					Values: shuffle,
+					Level:  n.Level + 1,
+					Cost:   0,
+					Move:   mov,
+					Cursor: n.Cursor,
+				},
+			)
+		}
+	}
+	return children
+}
