@@ -3,9 +3,8 @@ from node import Nodo
 class Puzzle:
     def __init__(self):
         self.por_visitar = []
-        self.visitados = []
-        self.hashed = []
-
+        # hash/dictionary for quick search
+        self.visitados = {}
     
     def resolver(self, inicial, objetivo):
 
@@ -32,16 +31,14 @@ class Puzzle:
             for nodo_expandido in actual.crear_hijos():
                 print("vamos a expandir ....")
                 nodo_expandido.costo = nodo_expandido.diferencia_con(objetivo) + nodo_expandido.nivel
-
-                if nodo_expandido.__str__() in self.hashed:
+                # nodo already in keys
+                if nodo_expandido.__str__() in self.visitados.keys():
                     print("already visited",nodo_expandido.__str__())
                     continue
 
                 self.por_visitar.append(nodo_expandido)
-            
-            self.visitados.append(actual)
-            self.hashed.append(actual.__str__())
-            
+            # add the node hash (string representation to the dictionary)
+            self.visitados[actual.__str__()] = actual
             del self.por_visitar[0]
 
             self.por_visitar.sort(
