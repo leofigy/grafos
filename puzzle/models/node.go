@@ -1,6 +1,9 @@
 package models
 
-import "log"
+import (
+	"fmt"
+	"log"
+)
 
 type Direction uint8
 
@@ -23,6 +26,16 @@ type Node[T string | uint | int] struct {
 type Point struct {
 	X int
 	Y int
+}
+
+func (n *Node[T]) String() string {
+	pres := ""
+	for _, item := range n.Values {
+		for _, c := range item {
+			pres += fmt.Sprint(c)
+		}
+	}
+	return pres
 }
 
 func (p *Point) InLimits(limit int) bool {
