@@ -8,7 +8,7 @@ import (
 func main() {
 	log.Println("puzzle solver")
 	myPuzzle := models.Puzzle[int]{
-		Pending: []*models.Node[int]{},
+		Pending: []models.Node[int]{},
 		Visited: map[string]*models.Node[int]{},
 	}
 

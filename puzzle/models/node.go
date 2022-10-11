@@ -76,7 +76,7 @@ func (n *Node[T]) CopyAndShuffle(A, B Point) (out [][]T) {
 
 	if !B.InLimits(len(n.Values)) {
 		log.Println("not in limits omitting copy")
-		return
+		return nil
 	}
 
 	out = make([][]T, len(n.Values))

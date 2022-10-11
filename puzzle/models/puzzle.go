@@ -7,12 +7,12 @@ import (
 )
 
 type Puzzle[T string | uint | int] struct {
-	Pending []*Node[T]
+	Pending []Node[T]
 	Visited map[string]*Node[T]
 }
 
 func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
-	startNode := &Node[T]{
+	startNode := Node[T]{
 		Values: start,
 		Level:  0,
 		Cost:   0,
@@ -76,12 +76,12 @@ func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
 
 			next.Cost = localCost + int(next.Level)
 
-			p.Pending = append(p.Pending, &next)
+			p.Pending = append(p.Pending, next)
 		}
 
 		if len(p.Pending) <= 1 {
 			// resetting
-			p.Pending = []*Node[T]{}
+			p.Pending = []Node[T]{}
 		} else {
 			// remove the last one
 			p.Pending = p.Pending[1:]
@@ -95,7 +95,7 @@ func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
 
 		log.Println("aqui", len(p.Pending))
 
-		p.Visited[current.String()] = current
+		p.Visited[current.String()] = &current
 
 	}
 
