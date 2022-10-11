@@ -80,7 +80,12 @@ func (n *Node[T]) CopyAndShuffle(A, B Point) (out [][]T) {
 	}
 
 	out = make([][]T, len(n.Values))
-	copy(out, n.Values)
+
+	for i, row := range n.Values {
+		targetRow := make([]T, len(row))
+		copy(targetRow, row)
+		out[i] = targetRow
+	}
 
 	out[A.X][A.Y], out[B.X][B.Y] = out[B.X][B.Y], out[A.X][A.Y]
 	return

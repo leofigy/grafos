@@ -53,8 +53,12 @@ func TestShuffle(t *testing.T) {
 		Cursor: uint(Origin),
 	}
 
-	fmt.Println(node.Values)
+	fmt.Println("this are the values pal ", node.Values)
 	target := node.CopyAndShuffle(Point{0, 0}, Point{0, 2})
 	fmt.Println(target)
+
+	target2 := node.CopyAndShuffle(Point{0, 0}, Point{2, 2})
+	fmt.Println(target2)
+	fmt.Println("this are the values pal ", node.Values)
 
 }
