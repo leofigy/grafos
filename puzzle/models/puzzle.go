@@ -3,6 +3,7 @@ package models
 import (
 	"fmt"
 	"log"
+	"sort"
 )
 
 type Puzzle[T string | uint | int] struct {
@@ -36,10 +37,10 @@ func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
 
 		current := p.Pending[0]
 
-		fmt.Println(current.Values)
-		fmt.Println(current.Cost)
+		fmt.Println("Value and cost", current.Values, current.Cost)
 
 		val, err := current.ComputeDiffValuesWith(target)
+		log.Println("DIFERENCIA EN VALOR   ", val)
 
 		if err != nil {
 			log.Println(err)
@@ -58,7 +59,7 @@ func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
 		}
 
 		for _, next := range nextChildren {
-			log.Println(next)
+			log.Println("hijo calculado", next)
 
 			_, ok := p.Visited[next.String()]
 
@@ -85,6 +86,14 @@ func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
 			// remove the last one
 			p.Pending = p.Pending[1:]
 		}
+
+		sort.Slice(
+			p.Pending, func(x, y int) bool {
+				return p.Pending[x].Cost < p.Pending[y].Cost
+			},
+		)
+
+		log.Println("aqui", len(p.Pending))
 
 		p.Visited[current.String()] = current
 

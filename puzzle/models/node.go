@@ -116,6 +116,7 @@ func (n *Node[T]) ExpandChildren() []Node[T] {
 
 	for mov := range moves {
 		shuffle := n.CopyAndShuffle(Point{x, y}, moves[mov])
+		log.Println("CALC SHUYFFLE", shuffle)
 		if len(shuffle) > 0 {
 			children = append(children,
 				Node[T]{
