@@ -66,6 +66,15 @@ func (p *Puzzle[T]) Solve(start, target [][]T, cursor T) error {
 				log.Println("already visited skipping")
 				continue
 			}
+			localCost, err := next.ComputeDiffValuesWith(target)
+
+			if err != nil {
+				log.Println(err)
+				continue
+			}
+
+			next.Cost = localCost + int(next.Level)
+
 			p.Pending = append(p.Pending, &next)
 		}
 
